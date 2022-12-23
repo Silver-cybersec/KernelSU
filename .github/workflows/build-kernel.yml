@@ -14,26 +14,30 @@ jobs:
     strategy:
       matrix:
         include:
-          - version: android12-5.10-66
-            tag: android12-5.10-2021-11
-            os_version: 12.0.0
-            os_patch_level: 2021-11
-          - version: android12-5.10-81
-            tag: android12-5.10-2022-03
-            os_version: 12.0.0
-            os_patch_level: 2022-03
-          - version: android12-5.10-101
-            tag: android12-5.10-2022-05
-            os_version: 12.0.0
-            os_patch_level: 2022-05
-          - version: android12-5.10-110
-            tag: android12-5.10-2022-07
-            os_version: 12.0.0
-            os_patch_level: 2022-07
-          - version: android12-5.10-136
-            tag: android12-5.10-2022-11
-            os_version: 12.0.0
+          - version: android13-5.10-107
+            tag: android13-5.10-2022-11
+            os_version: 13.0.0
             os_patch_level: 2022-11
+#           - version: android12-5.10-66
+#             tag: android12-5.10-2021-11
+#             os_version: 12.0.0
+#             os_patch_level: 2021-11
+#           - version: android12-5.10-81
+#             tag: android12-5.10-2022-03
+#             os_version: 12.0.0
+#             os_patch_level: 2022-03
+#           - version: android12-5.10-101
+#             tag: android12-5.10-2022-05
+#             os_version: 12.0.0
+#             os_patch_level: 2022-05
+#           - version: android12-5.10-110
+#             tag: android12-5.10-2022-07
+#             os_version: 12.0.0
+#             os_patch_level: 2022-07
+#           - version: android12-5.10-136
+#             tag: android12-5.10-2022-11
+#             os_version: 12.0.0
+#             os_patch_level: 2022-11
 
     name: Build aarch64-${{ matrix.version }}
     runs-on: ubuntu-latest
