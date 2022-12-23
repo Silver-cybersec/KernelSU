@@ -18,7 +18,7 @@ jobs:
       with:
         ndk-version: r25b
         local-cache: true
-    - name: Build with NDK
+    - name: Build with NDK2
       working-directory: ./userspace
       run: ndk-build
     - name: Upload a Build Artifact
