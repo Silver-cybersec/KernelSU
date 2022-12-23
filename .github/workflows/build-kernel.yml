@@ -18,26 +18,26 @@ jobs:
             tag: android13-5.10-2022-12
             os_version: 13.0.0
             os_patch_level: 2022-12
-          - version: android12-5.10-66
-            tag: android12-5.10-2021-11
-            os_version: 12.0.0
-            os_patch_level: 2021-11
-          - version: android12-5.10-81
-            tag: android12-5.10-2022-03
-            os_version: 12.0.0
-            os_patch_level: 2022-03
-          - version: android12-5.10-101
-            tag: android12-5.10-2022-05
-            os_version: 12.0.0
-            os_patch_level: 2022-05
-          - version: android12-5.10-110
-            tag: android12-5.10-2022-07
-            os_version: 12.0.0
-            os_patch_level: 2022-07
-          - version: android12-5.10-136
-            tag: android12-5.10-2022-11
-            os_version: 12.0.0
-            os_patch_level: 2022-11
+#           - version: android12-5.10-66
+#             tag: android12-5.10-2021-11
+#             os_version: 12.0.0
+#             os_patch_level: 2021-11
+#           - version: android12-5.10-81
+#             tag: android12-5.10-2022-03
+#             os_version: 12.0.0
+#             os_patch_level: 2022-03
+#           - version: android12-5.10-101
+#             tag: android12-5.10-2022-05
+#             os_version: 12.0.0
+#             os_patch_level: 2022-05
+#           - version: android12-5.10-110
+#             tag: android12-5.10-2022-07
+#             os_version: 12.0.0
+#             os_patch_level: 2022-07
+#           - version: android12-5.10-136
+#             tag: android12-5.10-2022-11
+#             os_version: 12.0.0
+#             os_patch_level: 2022-11
 
     name: Build aarch64-${{ matrix.version }}
     runs-on: ubuntu-latest
@@ -72,15 +72,15 @@ jobs:
     - name: Build boot-lz4.img
       working-directory: android-kernel
       run: |
-        tools/mkbootimg/mkbootimg.py --header_version 4 --kernel ./out/android12-5.10/dist/Image.lz4 --ramdisk out/ramdisk --output ./out/android12-5.10/dist/boot-lz4.img --os_version ${{ matrix.os_version }} --os_patch_level ${{ matrix.os_patch_level }}
-        ./build/build-tools/path/linux-x86/avbtool add_hash_footer --partition_name boot --partition_size $((64*1024*1024)) --image out/android12-5.10/dist/boot-lz4.img --algorithm SHA256_RSA2048 --key ./prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
+        tools/mkbootimg/mkbootimg.py --header_version 4 --kernel ./out/android13-5.10/dist/Image.lz4 --ramdisk out/ramdisk --output ./out/android13-5.10/dist/boot-lz4.img --os_version ${{ matrix.os_version }} --os_patch_level ${{ matrix.os_patch_level }}
+        ./build/build-tools/path/linux-x86/avbtool add_hash_footer --partition_name boot --partition_size $((64*1024*1024)) --image out/android13-5.10/dist/boot-lz4.img --algorithm SHA256_RSA2048 --key ./prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
 
     - name: Build boot-gz.img
       working-directory: android-kernel
       run: |
-        cat out/android12-5.10/dist/Image | ./prebuilts/build-tools/path/linux-x86/gzip -n -f -9 > out/android12-5.10/dist/Image.gz
-        tools/mkbootimg/mkbootimg.py --header_version 4 --kernel ./out/android12-5.10/dist/Image.gz --ramdisk out/ramdisk --output ./out/android12-5.10/dist/boot-gz.img --os_version ${{ matrix.os_version }} --os_patch_level ${{ matrix.os_patch_level }}
-        ./build/build-tools/path/linux-x86/avbtool add_hash_footer --partition_name boot --partition_size $((64*1024*1024)) --image out/android12-5.10/dist/boot-gz.img --algorithm SHA256_RSA2048 --key ./prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
+        cat out/android13-5.10/dist/Image | ./prebuilts/build-tools/path/linux-x86/gzip -n -f -9 > out/android13-5.10/dist/Image.gz
+        tools/mkbootimg/mkbootimg.py --header_version 4 --kernel ./out/android13-5.10/dist/Image.gz --ramdisk out/ramdisk --output ./out/android13-5.10/dist/boot-gz.img --os_version ${{ matrix.os_version }} --os_patch_level ${{ matrix.os_patch_level }}
+        ./build/build-tools/path/linux-x86/avbtool add_hash_footer --partition_name boot --partition_size $((64*1024*1024)) --image out/android13-5.10/dist/boot-gz.img --algorithm SHA256_RSA2048 --key ./prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
 
     - name: Upload Image.gz
       uses: actions/upload-artifact@v3
